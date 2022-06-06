@@ -1,3 +1,27 @@
+body    {
+    background-color: rgb(145, 238, 238);
+    font-size: 30px;
+    text-align: center;
+}
+
 .hidden {
     display: none;
 }
+
+#view-high-scores {
+    text-align: left;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+#start-quiz-button {
+    background-color: rgb(39, 24, 156);
+    color: white;
+    border-radius: 10px;
+    width: 20%;
+    height: 50px;
+    margin: 20px auto 10px auto;
+}
+
