@@ -8,12 +8,16 @@ body    {
     display: none;
 }
 
+#timer-element {
+    text-align: left;
+}
+
 #view-high-scores {
     text-align: left;
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 60px;
 }
 
 #start-quiz-button {
@@ -23,5 +27,9 @@ h1 {
     width: 20%;
     height: 50px;
     margin: 20px auto 10px auto;
+}
+
+a {
+    margin-left: 100px;
 }
 
