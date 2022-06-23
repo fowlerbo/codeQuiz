@@ -1,3 +1,3 @@
-# codeQuiz
+# CodeQuiz
 
 # Website Purpose
