@@ -2,14 +2,14 @@ var questionCount = 0;
 var score = 0;
 var interval;
 var buttonEl = document.getElementById("play-button");
+var answerButtonEls = document.querySelectorAll(".answerButton");
 var windowEls = document.querySelectorAll(".window");
 var questionHeader = document.getElementById("question");
-var answerButtonEls = document.querySelectorAll(".answerButton");
+var highScoreHeaderEl = document.getElementById("high-score-header");
 var timerEl = document.getElementById("timer-element");
-var timerValueEl = document.getElementById("time-clock");
 var highScoreInputEl = document.getElementById("high-score-input");
 var highScoreButtonEl = document.getElementById("high-score-button");
-var highScoreHeaderEl = document.getElementById("high-score-header");
+var timerValueEl = document.getElementById("time-clock");
 var highScoreLinkEl = document.getElementById("view-high-scores");
 var questionsArray = [
   {
@@ -47,14 +47,6 @@ var questionsArray = [
     answers: ["numbers and strings", "booleans", "objects", "all of the above"],
     correctAnswer: 3,
   },
-];
-var highScoresListEl = document.getElementById("view-high-scores");
-var highScoresList = [
-  { initials: "AAA", score: 0 },
-  { initials: "BBB", score: 0 },
-  { initials: "CCC", score: 0 },
-  { initials: "DDD", score: 0 },
-  { initials: "EEE", score: 0 },
 ];
 
 let startQuiz = () => {
@@ -99,13 +91,9 @@ let checkAnswer = (e) => {
       questionsArray[questionCount].correctAnswer
     ]
   ) {
-    alert("Congratulations! You have chosen the correct answer!");
-    timerValueEl.value += 11;
-    timerValueEl.textContent = timerValueEl.value.toString();
+    alert("Congratulations!  Correct answer!");
   } else {
-    alert("Unfortunately you have chosen the incorrect answer!");
-    timerValueEl.value -= 9;
-    timerValueEl.textContent = timerValueEl.value.toString();
+    alert("ncorrect answer!");
   }
   questionCount += 1;
   displayQuestion();
@@ -127,7 +115,7 @@ let showHighScoreWindow = () => {
     highScoreHeaderEl.textContent =
       "Congratulations! You got a high score of " +
       score +
-      "! Please input your initials below!";
+      "! Please input initials!";
     highScoreButtonEl.textContent = "Add High Score";
     highScoreInputEl.style.display = "flex";
     highScoreButtonEl.addEventListener("click", () => {
@@ -135,8 +123,7 @@ let showHighScoreWindow = () => {
       restartQuiz();
     });
   } else {
-    highScoreHeaderEl.textContent =
-      "Unforunately, you did not get a high score this round! Please try again!";
+    highScoreHeaderEl.textContent = "Better Luck next time! Please try again!";
     highScoreButtonEl.textContent = "Restart the quiz";
     highScoreInputEl.style.display = "none";
     highScoreButtonEl.addEventListener("click", restartQuiz);
@@ -146,27 +133,4 @@ let showHighScoreWindow = () => {
   console.log("hello world");
 };
 
-let storeHighScore = (score, object, rank) => {
-  var newHighScoreObject = {
-    initials: highScoreInputEl.value,
-    score: score,
-  };
-};
-
-let restartQuiz = () => {
-  windowEls[2].style.display = "none";
-  timerEl.style.display = "none";
-  windowEls[0].style.display = "block";
-  var newHighScoreObject = {};
-};
-
 buttonEl.addEventListener("click", startQuiz);
-highScoresListEl.addEventListener("click", () => {
-  var highScoresArray = [];
-  const highScoresObject = JSON.parse(localStorage.getItem("highScores"));
-  for (i = 0; i < highScoresObject.length; i++) {
-    highScoresArray[i] =
-      " " + highScoresObject[i].initials + " - " + highScoresObject[i].score;
-  }
-  alert(highScoresArray);
-});
