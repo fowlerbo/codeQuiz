@@ -93,7 +93,7 @@ let checkAnswer = (e) => {
   ) {
     alert("Congratulations!  Correct answer!");
   } else {
-    alert("ncorrect answer!");
+    alert("incorrect answer!");
   }
   questionCount += 1;
   displayQuestion();
@@ -113,9 +113,7 @@ let showHighScoreWindow = () => {
   }
   if (highScoreRank <= getHighScoresFromLocalStorage.length - 1) {
     highScoreHeaderEl.textContent =
-      "Congratulations! You got a high score of " +
-      score +
-      "! Please input initials!";
+      "Congratulations! Score totals " + score + "! Enter initials!";
     highScoreButtonEl.textContent = "Add High Score";
     highScoreInputEl.style.display = "flex";
     highScoreButtonEl.addEventListener("click", () => {
@@ -130,7 +128,16 @@ let showHighScoreWindow = () => {
   }
   windowEls[1].style.display = "none";
   windowEls[2].style.display = "flex";
-  console.log("hello world");
+};
+
+let storeHighScore = (score, object, rank) => {
+  var newHighScoreObject = {
+    initials: highScoreInputEl.value,
+    score: score,
+  };
+  object.splice(rank, 0, newHighScoreObject);
+  object.pop();
+  localStorage.setItem("highScores", JSON.stringify(object));
 };
 
 buttonEl.addEventListener("click", startQuiz);
